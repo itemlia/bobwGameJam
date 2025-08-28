@@ -9,5 +9,7 @@ public class asteroid : MonoBehaviour
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
-        }    }
+        }    
+    }
+    
 }

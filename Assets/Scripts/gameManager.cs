@@ -1,15 +1,12 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class gameManager : MonoBehaviour
+public class gameManager : MonoBehaviour, IPoints
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public event Action<float> onPointsGained; 
 
-    // Update is called once per frame
-    void Update()
+    public void applyPoints(float pointNumber)
     {
         
     }

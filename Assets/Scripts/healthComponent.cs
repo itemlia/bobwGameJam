@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class healthComponent : MonoBehaviour, IIDamageable
+public class healthComponent : MonoBehaviour, IDamagable
 {
     public event Action<float, float, float> onDamaged;
 

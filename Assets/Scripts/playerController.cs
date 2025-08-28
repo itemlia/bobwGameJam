@@ -10,6 +10,7 @@ public class playerController : MonoBehaviour
     [SerializeField] private PlayerControls controls;
     [SerializeField] private designPatternsObjectPooler objectPooler;
     [SerializeField] private healthComponent healthComp;
+    [SerializeField] private gameManager gameManager;
 
     private Vector3 inputMove;
     private Rigidbody2D rb;
@@ -24,6 +25,8 @@ public class playerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         objectPooler = GameObject.Find("objectPooler").GetComponent<designPatternsObjectPooler>();
         healthComp = GetComponent<healthComponent>();
+        gameManager = GameObject.Find("gameManager").GetComponent<gameManager>();
+        
     }
 
     private void OnEnable()
@@ -37,6 +40,8 @@ public class playerController : MonoBehaviour
 
         healthComp.onDamaged += Handle_HealthDamaged;
         healthComp.onDead += Handle_OnDead;
+
+        gameManager.onPointsGained += Handle_PointsGained;
     }
 
 
@@ -52,6 +57,8 @@ public class playerController : MonoBehaviour
         
         healthComp.onDamaged -= Handle_HealthDamaged;
         healthComp.onDead -= Handle_OnDead;
+        
+        gameManager.onPointsGained -= Handle_PointsGained;
     }
 
 
@@ -89,6 +96,10 @@ public class playerController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void Handle_PointsGained(float obj)
+    {
+        throw new NotImplementedException();
+    }
     private void Update()
     {
         rb.linearVelocity = inputMove * speed;
