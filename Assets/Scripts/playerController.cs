@@ -96,9 +96,9 @@ public class playerController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void Handle_PointsGained(float obj)
+    private void Handle_PointsGained(float pointsGained)
     {
-        throw new NotImplementedException();
+        Debug.Log(pointsGained);
     }
     private void Update()
     {

@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class gameManager : MonoBehaviour, IPoints
 {
-    public event Action<float> onPointsGained; 
+    public event Action<float> onPointsGained;
 
-    public void applyPoints(float pointNumber)
+    [SerializeField] private float pointValue;
+
+    public void applyPoints(float pointsGained)
     {
-        
+        float newPointValue = pointValue + pointsGained;
+        pointValue = newPointValue;
+        onPointsGained?.Invoke(pointValue);
     }
 }

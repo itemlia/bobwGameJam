@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IPoints
 {
-   void applyPoints(float pointNumber);
+   void applyPoints(float pointsGained);
 }
