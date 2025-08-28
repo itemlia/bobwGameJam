@@ -15,13 +15,13 @@ public class PooledObjects : MonoBehaviour
         //m_active = false;
     }
 
-    // our recycle function which we want to call to put this object back in the right pool
+    // recycle function -> call to put this object back in the right pool
     public void recycleSelf()
     {
         m_poolerRef.RecycleObject(this);
     }
 
-    // clean up for our object
+    // clean up for object
     private void OnDestroy()
     {
        m_poolerRef.OnPoolCleanup -= this.recycleSelf;
