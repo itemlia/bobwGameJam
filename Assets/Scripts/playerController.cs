@@ -6,14 +6,16 @@ using UnityEngine.InputSystem;
 
 public class playerController : MonoBehaviour
 {
-    private PlayerControls controls;
-    private designPatternsObjectPooler objectPooler;
+    [Header("components")]
+    [SerializeField] private PlayerControls controls;
+    [SerializeField] private designPatternsObjectPooler objectPooler;
+    [SerializeField] private healthComponent healthComp;
 
     private Vector3 inputMove;
     private Rigidbody2D rb;
     
+    [Header("movement variables")]
     [SerializeField] private float speed;
-    [SerializeField] private float vertMove;
     
 
     private void Awake()
@@ -21,6 +23,7 @@ public class playerController : MonoBehaviour
         controls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
         objectPooler = GameObject.Find("objectPooler").GetComponent<designPatternsObjectPooler>();
+        healthComp = GetComponent<healthComponent>();
     }
 
     private void OnEnable()
@@ -31,6 +34,9 @@ public class playerController : MonoBehaviour
         controls.Input.Move.canceled += Handle_MoveCancelled;
         controls.Input.Shoot.performed += Handle_ShootPerformed;
         controls.Input.Shoot.canceled += Handle_ShootCancelled;
+
+        healthComp.onDamaged += Handle_HealthDamaged;
+        healthComp.onDead += Handle_OnDead;
     }
 
 
@@ -43,6 +49,9 @@ public class playerController : MonoBehaviour
         controls.Input.Move.canceled -= Handle_MoveCancelled;
         controls.Input.Shoot.performed -= Handle_ShootPerformed;
         controls.Input.Shoot.canceled -= Handle_ShootCancelled;
+        
+        healthComp.onDamaged -= Handle_HealthDamaged;
+        healthComp.onDead -= Handle_OnDead;
     }
 
 
@@ -68,9 +77,29 @@ public class playerController : MonoBehaviour
     private void Handle_ShootCancelled(InputAction.CallbackContext obj)
     {
     }
+
+    private void Handle_HealthDamaged(float currentHealth, float maxHealth, float changedHeath)
+    {
+        float healthVal = ((currentHealth / maxHealth) * 100);
+    }
     
+    
+    private void Handle_OnDead(MonoBehaviour causer)
+    {
+        Destroy(gameObject);
+    }
+
     private void Update()
     {
         rb.linearVelocity = inputMove * speed;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Asteroid"))
+        {
+            healthComp.applyDamage(10, other.gameObject.GetComponent<MonoBehaviour>());
+            Destroy(other.gameObject);
+        }
     }
 }

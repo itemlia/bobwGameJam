@@ -27,7 +27,7 @@ public class spawner : MonoBehaviour
     
     private void Start()
     {
-        StartCoroutine(dropTimer());
+        StartCoroutine(dropTimer());    
     }
 
     private float randomSpawn()
