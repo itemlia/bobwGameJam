@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class playerController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class playerController : MonoBehaviour
     [SerializeField] private designPatternsObjectPooler objectPooler;
     [SerializeField] private healthComponent healthComp;
     [SerializeField] private gameManager gameManager;
+    [SerializeField] private uiController uiController;
 
     private Vector3 inputMove;
     private Rigidbody2D rb;
@@ -26,6 +28,7 @@ public class playerController : MonoBehaviour
         objectPooler = GameObject.Find("objectPooler").GetComponent<designPatternsObjectPooler>();
         healthComp = GetComponent<healthComponent>();
         gameManager = GameObject.Find("gameManager").GetComponent<gameManager>();
+        uiController = GameObject.Find("ui").GetComponent<uiController>();
         
     }
 
@@ -88,6 +91,7 @@ public class playerController : MonoBehaviour
     private void Handle_HealthDamaged(float currentHealth, float maxHealth, float changedHeath)
     {
         float healthVal = ((currentHealth / maxHealth) * 100);
+        uiController.changeBarVal(healthVal);
     }
     
     
@@ -98,7 +102,7 @@ public class playerController : MonoBehaviour
 
     private void Handle_PointsGained(float pointsGained)
     {
-        Debug.Log(pointsGained);
+        uiController.setPoints(pointsGained);
     }
     private void Update()
     {
