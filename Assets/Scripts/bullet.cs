@@ -9,17 +9,9 @@ public class bullet : MonoBehaviour
 
     private PooledObjects pooledObjects;
 
-    public void Init(float orientation)
+    public void init()
     {
-        if (orientation.Equals(1))
-        {
-          rb.AddForce(UnityEngine.Vector2.right * force, ForceMode2D.Impulse);
-          
-        }
-        else 
-        {
-            rb.AddForce(UnityEngine.Vector2.left * force, ForceMode2D.Impulse);
-        }
+        rb.AddForce(UnityEngine.Vector2.up * force, ForceMode2D.Impulse);
     }
 
     private void Start()

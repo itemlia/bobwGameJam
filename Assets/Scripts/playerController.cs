@@ -13,7 +13,7 @@ public class playerController : MonoBehaviour
     private Rigidbody2D rb;
     
     [SerializeField] private float speed;
-    [SerializeField] private float horizMove;
+    [SerializeField] private float vertMove;
     
 
     private void Awake()
@@ -63,7 +63,7 @@ public class playerController : MonoBehaviour
 		
         bulletToSpawn.SetActive(true);
         bulletToSpawn.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        bulletToSpawn.GetComponent<bullet>().Init(horizMove);    
+        bulletToSpawn.GetComponent<bullet>().init();
     }
     private void Handle_ShootCancelled(InputAction.CallbackContext obj)
     {
