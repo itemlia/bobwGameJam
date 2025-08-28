@@ -7,15 +7,20 @@ using UnityEngine.InputSystem;
 public class playerController : MonoBehaviour
 {
     private PlayerControls controls;
+    private designPatternsObjectPooler objectPooler;
 
     private Vector3 inputMove;
     private Rigidbody2D rb;
-    private float speed = 5f;
+    
+    [SerializeField] private float speed;
+    [SerializeField] private float horizMove;
+    
 
     private void Awake()
     {
         controls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
+        objectPooler = GameObject.Find("objectPooler").GetComponent<designPatternsObjectPooler>();
     }
 
     private void OnEnable()
@@ -24,7 +29,10 @@ public class playerController : MonoBehaviour
 
         controls.Input.Move.performed += Handle_MovePerformed;
         controls.Input.Move.canceled += Handle_MoveCancelled;
+        controls.Input.Shoot.performed += Handle_ShootPerformed;
+        controls.Input.Shoot.canceled += Handle_ShootCancelled;
     }
+
 
 
     private void OnDisable()
@@ -33,6 +41,8 @@ public class playerController : MonoBehaviour
 
         controls.Input.Move.performed -= Handle_MovePerformed;
         controls.Input.Move.canceled -= Handle_MoveCancelled;
+        controls.Input.Shoot.performed -= Handle_ShootPerformed;
+        controls.Input.Shoot.canceled -= Handle_ShootCancelled;
     }
 
 
@@ -43,6 +53,20 @@ public class playerController : MonoBehaviour
     private void Handle_MoveCancelled(InputAction.CallbackContext obj)
     {
         inputMove = Vector2.zero;
+    }
+    
+    private void Handle_ShootPerformed(InputAction.CallbackContext obj)
+    {
+        GameObject bulletToSpawn = objectPooler.GetPooledObject("bullet");
+
+        if (bulletToSpawn == null) { return; }
+		
+        bulletToSpawn.SetActive(true);
+        bulletToSpawn.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        bulletToSpawn.GetComponent<bullet>().Init(horizMove);    
+    }
+    private void Handle_ShootCancelled(InputAction.CallbackContext obj)
+    {
     }
     
     private void Update()
