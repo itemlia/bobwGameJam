@@ -7,15 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class objectController : MonoBehaviour
 {
-    public Transform tRock;
-    public Transform tPlayer;
+    [SerializeField] private Transform tRock;
+    [SerializeField] private Transform tPlayer;
 
-    public float timer;
-    public float offset;
+    [SerializeField] private float timer;
+    [SerializeField] private float offset;
 
-    public GameObject debris;
+    [SerializeField] private GameObject debris;
 
-    public bool positionReached;
 
 
     public IEnumerator dropTimer()
