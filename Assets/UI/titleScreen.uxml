@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/stylesheet.uss?fileID=7433441132597879392&amp;guid=0b11254b9b8d0c8449aa3ed42e786b12&amp;type=3#stylesheet" />
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Label text="game name" name="youLost" class="normal-text" />
+        <ui:Button text="level 1" name="b_level1" class="button" />
+        <ui:Button text="quit" name="b_quit" class="button" />
+    </ui:VisualElement>
+</ui:UXML>

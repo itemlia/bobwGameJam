@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class playerController : MonoBehaviour
@@ -98,6 +99,7 @@ public class playerController : MonoBehaviour
     private void Handle_OnDead(MonoBehaviour causer)
     {
         Destroy(gameObject);
+        SceneManager.LoadScene("Scenes/loseScreen");
     }
 
     private void Handle_PointsGained(float pointsGained)
@@ -115,6 +117,14 @@ public class playerController : MonoBehaviour
         {
             healthComp.applyDamage(10, other.gameObject.GetComponent<MonoBehaviour>());
             Destroy(other.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("End"))
+        {
+            SceneManager.LoadScene("Scenes/winScreen");
         }
     }
 }
