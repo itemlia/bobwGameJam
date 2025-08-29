@@ -6,7 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/titleScreen.unity
+    guid: b595edb4f838da74cb62ff01e6a5dfb5
+  - enabled: 1
     path: Assets/Scenes/levelOne.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/winScreen.unity
+    guid: 54cb646d9fd8dbe49996747139cef005
+  - enabled: 1
+    path: Assets/Scenes/loseScreen.unity
+    guid: 50f923fc10f92084384dbfb597293bcd
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
