@@ -6,28 +6,56 @@ public class shipController : MonoBehaviour
 {
    [SerializeField] private GameObject[] movePoints;
    [SerializeField] private float speed = 10.0f;
-   [SerializeField] private Vector2 position;
 
    [SerializeField] private Rigidbody2D rb;
 
+   private int index;
+
+
+   private void Awake()
+   {
+      randomPoint();
+   }
+
    private void Start()
    {
-      position = gameObject.transform.position;
       rb =  GetComponent<Rigidbody2D>();
    }
 
    private void Update()
    {
-      rb.linearVelocity = toMoveTo() * speed;
+      moveTo();
    }
 
-   private Vector3 toMoveTo()
+   private void randomPoint()
    {
       Random rand =  new Random();
-      int index = rand.Next(0, movePoints.Length);
+      index = rand.Next(0, movePoints.Length);
       
-      Vector3 moveTo = Vector3.MoveTowards(position, movePoints[index].transform.position, Time.deltaTime * speed);
-      
-      return moveTo;
+      //generates a point to move to from array of available points
+   }
+
+   //made function recursive so calls itself once ship meets MoveTowards point
+   private void moveTo()
+   {
+      while (true)
+      {
+         if (gameObject.transform.position != movePoints[index].transform.position) //if ship isnt at generated point -> move to point
+         {
+            Vector3 moveTo = movePoints[index].transform.position;
+
+            float step = speed * Time.deltaTime;
+
+            // move ship towards the target location
+            transform.position = Vector2.MoveTowards(transform.position, moveTo, step);
+         }
+         else
+         {
+            randomPoint(); //generate new point to move too
+            continue;
+         }
+
+         break;
+      }
    }
 }
