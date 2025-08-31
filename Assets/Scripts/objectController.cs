@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class objectController : MonoBehaviour
 {
-    [SerializeField] private Transform tRock;
+    [SerializeField] private Transform tTopWall;
     [SerializeField] private Transform tPlayer;
 
     [SerializeField] private float timer;
@@ -19,16 +19,16 @@ public class objectController : MonoBehaviour
 
     public IEnumerator dropTimer()
     {
-        while (tPlayer.position.y <= tRock.position.y)
+        while (tPlayer.position.y <= tTopWall.position.y)
         {
             yield return new WaitForSeconds(timer);
-            Instantiate(debris, new Vector3(tRock.position.x + offset, tRock.position.y, 0f), Quaternion.identity);
+            Instantiate(debris, new Vector3(tTopWall.position.x + offset, tTopWall.position.y, 0f), Quaternion.identity);
         }
     }
 
     private void Start()
     {
-        tRock = GameObject.Find("rock").GetComponent<Transform>();
+        tTopWall = GameObject.Find("rock").GetComponent<Transform>();
         tPlayer = GameObject.Find("player").GetComponent<Transform>();
 
         StartCoroutine(dropTimer());

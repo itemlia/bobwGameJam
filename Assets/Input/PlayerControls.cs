@@ -185,10 +185,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""f247291c-f798-4273-9040-68d845ec2a78"",
             ""actions"": [
                 {
-                    ""name"": ""leftClick"",
+                    ""name"": ""spawn"",
                     ""type"": ""Value"",
-                    ""id"": ""201ec546-d03a-4dba-bd47-3915a07f1f86"",
-                    ""expectedControlType"": """",
+                    ""id"": ""7ac03e32-e1b0-49eb-8910-5baf1849d163"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -196,15 +196,37 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""11621447-6590-46e7-a2f8-963e7d5d1f0d"",
+                    ""name"": ""left click"",
+                    ""id"": ""ab996ba7-53b6-4a56-afa6-bad11102b034"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""spawn"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""53414c00-c069-498c-bb0d-b6757c4cf50c"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""leftClick"",
+                    ""action"": ""spawn"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""e252648c-1049-4869-a7b3-fbc1e57f254e"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""spawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -217,7 +239,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_shipInput_Shoot = m_shipInput.FindAction("Shoot", throwIfNotFound: true);
         // asteroidInput
         m_asteroidInput = asset.FindActionMap("asteroidInput", throwIfNotFound: true);
-        m_asteroidInput_leftClick = m_asteroidInput.FindAction("leftClick", throwIfNotFound: true);
+        m_asteroidInput_spawn = m_asteroidInput.FindAction("spawn", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -406,7 +428,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // asteroidInput
     private readonly InputActionMap m_asteroidInput;
     private List<IAsteroidInputActions> m_AsteroidInputActionsCallbackInterfaces = new List<IAsteroidInputActions>();
-    private readonly InputAction m_asteroidInput_leftClick;
+    private readonly InputAction m_asteroidInput_spawn;
     /// <summary>
     /// Provides access to input actions defined in input action map "asteroidInput".
     /// </summary>
@@ -419,9 +441,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public AsteroidInputActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "asteroidInput/leftClick".
+        /// Provides access to the underlying input action "asteroidInput/spawn".
         /// </summary>
-        public InputAction @leftClick => m_Wrapper.m_asteroidInput_leftClick;
+        public InputAction @spawn => m_Wrapper.m_asteroidInput_spawn;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -448,9 +470,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_AsteroidInputActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_AsteroidInputActionsCallbackInterfaces.Add(instance);
-            @leftClick.started += instance.OnLeftClick;
-            @leftClick.performed += instance.OnLeftClick;
-            @leftClick.canceled += instance.OnLeftClick;
+            @spawn.started += instance.OnSpawn;
+            @spawn.performed += instance.OnSpawn;
+            @spawn.canceled += instance.OnSpawn;
         }
 
         /// <summary>
@@ -462,9 +484,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="AsteroidInputActions" />
         private void UnregisterCallbacks(IAsteroidInputActions instance)
         {
-            @leftClick.started -= instance.OnLeftClick;
-            @leftClick.performed -= instance.OnLeftClick;
-            @leftClick.canceled -= instance.OnLeftClick;
+            @spawn.started -= instance.OnSpawn;
+            @spawn.performed -= instance.OnSpawn;
+            @spawn.canceled -= instance.OnSpawn;
         }
 
         /// <summary>
@@ -528,11 +550,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IAsteroidInputActions
     {
         /// <summary>
-        /// Method invoked when associated input action "leftClick" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "spawn" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnLeftClick(InputAction.CallbackContext context);
+        void OnSpawn(InputAction.CallbackContext context);
     }
 }
