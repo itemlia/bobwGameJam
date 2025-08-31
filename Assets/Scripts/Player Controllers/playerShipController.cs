@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class playerController : MonoBehaviour
+public class playerShipController : MonoBehaviour
 {
     [Header("components")]
     [SerializeField] private PlayerControls controls;
@@ -37,10 +37,10 @@ public class playerController : MonoBehaviour
     {
         controls.Enable();
 
-        controls.Input.Move.performed += Handle_MovePerformed;
-        controls.Input.Move.canceled += Handle_MoveCancelled;
-        controls.Input.Shoot.performed += Handle_ShootPerformed;
-        controls.Input.Shoot.canceled += Handle_ShootCancelled;
+        controls.shipInput.Move.performed += Handle_MovePerformed;
+        controls.shipInput.Move.canceled += Handle_MoveCancelled;
+        controls.shipInput.Shoot.performed += Handle_ShootPerformed;
+        controls.shipInput.Shoot.canceled += Handle_ShootCancelled;
 
         healthComp.onDamaged += Handle_HealthDamaged;
         healthComp.onDead += Handle_OnDead;
@@ -54,10 +54,10 @@ public class playerController : MonoBehaviour
     {
         controls.Disable();
 
-        controls.Input.Move.performed -= Handle_MovePerformed;
-        controls.Input.Move.canceled -= Handle_MoveCancelled;
-        controls.Input.Shoot.performed -= Handle_ShootPerformed;
-        controls.Input.Shoot.canceled -= Handle_ShootCancelled;
+        controls.shipInput.Move.performed -= Handle_MovePerformed;
+        controls.shipInput.Move.canceled -= Handle_MoveCancelled;
+        controls.shipInput.Shoot.performed -= Handle_ShootPerformed;
+        controls.shipInput.Shoot.canceled -= Handle_ShootCancelled;
         
         healthComp.onDamaged -= Handle_HealthDamaged;
         healthComp.onDead -= Handle_OnDead;

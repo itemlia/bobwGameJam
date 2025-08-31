@@ -51,7 +51,7 @@ public class shipController : MonoBehaviour
          }
          else
          {
-            randomPoint(); //generate new point to move too
+            randomPoint(); //generate new point to move to
             continue;
          }
 

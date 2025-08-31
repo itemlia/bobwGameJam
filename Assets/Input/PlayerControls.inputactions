@@ -3,7 +3,7 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "Input",
+            "name": "shipInput",
             "id": "eed68d3e-ae8e-478d-8dce-159cfd2474f0",
             "actions": [
                 {
@@ -89,6 +89,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "asteroidInput",
+            "id": "f247291c-f798-4273-9040-68d845ec2a78",
+            "actions": [
+                {
+                    "name": "leftClick",
+                    "type": "Value",
+                    "id": "201ec546-d03a-4dba-bd47-3915a07f1f86",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "11621447-6590-46e7-a2f8-963e7d5d1f0d",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "leftClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

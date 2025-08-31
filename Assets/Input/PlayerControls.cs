@@ -89,7 +89,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ""name"": ""PlayerControls"",
     ""maps"": [
         {
-            ""name"": ""Input"",
+            ""name"": ""shipInput"",
             ""id"": ""eed68d3e-ae8e-478d-8dce-159cfd2474f0"",
             ""actions"": [
                 {
@@ -179,19 +179,51 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""asteroidInput"",
+            ""id"": ""f247291c-f798-4273-9040-68d845ec2a78"",
+            ""actions"": [
+                {
+                    ""name"": ""leftClick"",
+                    ""type"": ""Value"",
+                    ""id"": ""201ec546-d03a-4dba-bd47-3915a07f1f86"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""11621447-6590-46e7-a2f8-963e7d5d1f0d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""leftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // Input
-        m_Input = asset.FindActionMap("Input", throwIfNotFound: true);
-        m_Input_Move = m_Input.FindAction("Move", throwIfNotFound: true);
-        m_Input_Shoot = m_Input.FindAction("Shoot", throwIfNotFound: true);
+        // shipInput
+        m_shipInput = asset.FindActionMap("shipInput", throwIfNotFound: true);
+        m_shipInput_Move = m_shipInput.FindAction("Move", throwIfNotFound: true);
+        m_shipInput_Shoot = m_shipInput.FindAction("Shoot", throwIfNotFound: true);
+        // asteroidInput
+        m_asteroidInput = asset.FindActionMap("asteroidInput", throwIfNotFound: true);
+        m_asteroidInput_leftClick = m_asteroidInput.FindAction("leftClick", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
-        UnityEngine.Debug.Assert(!m_Input.enabled, "This will cause a leak and performance issues, PlayerControls.Input.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_shipInput.enabled, "This will cause a leak and performance issues, PlayerControls.shipInput.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_asteroidInput.enabled, "This will cause a leak and performance issues, PlayerControls.asteroidInput.Disable() has not been called.");
     }
 
     /// <summary>
@@ -264,34 +296,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Input
-    private readonly InputActionMap m_Input;
-    private List<IInputActions> m_InputActionsCallbackInterfaces = new List<IInputActions>();
-    private readonly InputAction m_Input_Move;
-    private readonly InputAction m_Input_Shoot;
+    // shipInput
+    private readonly InputActionMap m_shipInput;
+    private List<IShipInputActions> m_ShipInputActionsCallbackInterfaces = new List<IShipInputActions>();
+    private readonly InputAction m_shipInput_Move;
+    private readonly InputAction m_shipInput_Shoot;
     /// <summary>
-    /// Provides access to input actions defined in input action map "Input".
+    /// Provides access to input actions defined in input action map "shipInput".
     /// </summary>
-    public struct InputActions
+    public struct ShipInputActions
     {
         private @PlayerControls m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public InputActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public ShipInputActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Input/Move".
+        /// Provides access to the underlying input action "shipInput/Move".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_Input_Move;
+        public InputAction @Move => m_Wrapper.m_shipInput_Move;
         /// <summary>
-        /// Provides access to the underlying input action "Input/Shoot".
+        /// Provides access to the underlying input action "shipInput/Shoot".
         /// </summary>
-        public InputAction @Shoot => m_Wrapper.m_Input_Shoot;
+        public InputAction @Shoot => m_Wrapper.m_shipInput_Shoot;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_Input; }
+        public InputActionMap Get() { return m_Wrapper.m_shipInput; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -299,9 +331,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="InputActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="ShipInputActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(InputActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(ShipInputActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -309,11 +341,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="InputActions" />
-        public void AddCallbacks(IInputActions instance)
+        /// <seealso cref="ShipInputActions" />
+        public void AddCallbacks(IShipInputActions instance)
         {
-            if (instance == null || m_Wrapper.m_InputActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_InputActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_ShipInputActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ShipInputActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -328,8 +360,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="InputActions" />
-        private void UnregisterCallbacks(IInputActions instance)
+        /// <seealso cref="ShipInputActions" />
+        private void UnregisterCallbacks(IShipInputActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
@@ -340,12 +372,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="InputActions.UnregisterCallbacks(IInputActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ShipInputActions.UnregisterCallbacks(IShipInputActions)" />.
         /// </summary>
-        /// <seealso cref="InputActions.UnregisterCallbacks(IInputActions)" />
-        public void RemoveCallbacks(IInputActions instance)
+        /// <seealso cref="ShipInputActions.UnregisterCallbacks(IShipInputActions)" />
+        public void RemoveCallbacks(IShipInputActions instance)
         {
-            if (m_Wrapper.m_InputActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_ShipInputActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -355,27 +387,123 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="InputActions.AddCallbacks(IInputActions)" />
-        /// <seealso cref="InputActions.RemoveCallbacks(IInputActions)" />
-        /// <seealso cref="InputActions.UnregisterCallbacks(IInputActions)" />
-        public void SetCallbacks(IInputActions instance)
+        /// <seealso cref="ShipInputActions.AddCallbacks(IShipInputActions)" />
+        /// <seealso cref="ShipInputActions.RemoveCallbacks(IShipInputActions)" />
+        /// <seealso cref="ShipInputActions.UnregisterCallbacks(IShipInputActions)" />
+        public void SetCallbacks(IShipInputActions instance)
         {
-            foreach (var item in m_Wrapper.m_InputActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_ShipInputActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_InputActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_ShipInputActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="InputActions" /> instance referencing this action map.
+    /// Provides a new <see cref="ShipInputActions" /> instance referencing this action map.
     /// </summary>
-    public InputActions @Input => new InputActions(this);
+    public ShipInputActions @shipInput => new ShipInputActions(this);
+
+    // asteroidInput
+    private readonly InputActionMap m_asteroidInput;
+    private List<IAsteroidInputActions> m_AsteroidInputActionsCallbackInterfaces = new List<IAsteroidInputActions>();
+    private readonly InputAction m_asteroidInput_leftClick;
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Input" which allows adding and removing callbacks.
+    /// Provides access to input actions defined in input action map "asteroidInput".
     /// </summary>
-    /// <seealso cref="InputActions.AddCallbacks(IInputActions)" />
-    /// <seealso cref="InputActions.RemoveCallbacks(IInputActions)" />
-    public interface IInputActions
+    public struct AsteroidInputActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public AsteroidInputActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "asteroidInput/leftClick".
+        /// </summary>
+        public InputAction @leftClick => m_Wrapper.m_asteroidInput_leftClick;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_asteroidInput; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="AsteroidInputActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(AsteroidInputActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="AsteroidInputActions" />
+        public void AddCallbacks(IAsteroidInputActions instance)
+        {
+            if (instance == null || m_Wrapper.m_AsteroidInputActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_AsteroidInputActionsCallbackInterfaces.Add(instance);
+            @leftClick.started += instance.OnLeftClick;
+            @leftClick.performed += instance.OnLeftClick;
+            @leftClick.canceled += instance.OnLeftClick;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="AsteroidInputActions" />
+        private void UnregisterCallbacks(IAsteroidInputActions instance)
+        {
+            @leftClick.started -= instance.OnLeftClick;
+            @leftClick.performed -= instance.OnLeftClick;
+            @leftClick.canceled -= instance.OnLeftClick;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="AsteroidInputActions.UnregisterCallbacks(IAsteroidInputActions)" />.
+        /// </summary>
+        /// <seealso cref="AsteroidInputActions.UnregisterCallbacks(IAsteroidInputActions)" />
+        public void RemoveCallbacks(IAsteroidInputActions instance)
+        {
+            if (m_Wrapper.m_AsteroidInputActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="AsteroidInputActions.AddCallbacks(IAsteroidInputActions)" />
+        /// <seealso cref="AsteroidInputActions.RemoveCallbacks(IAsteroidInputActions)" />
+        /// <seealso cref="AsteroidInputActions.UnregisterCallbacks(IAsteroidInputActions)" />
+        public void SetCallbacks(IAsteroidInputActions instance)
+        {
+            foreach (var item in m_Wrapper.m_AsteroidInputActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_AsteroidInputActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="AsteroidInputActions" /> instance referencing this action map.
+    /// </summary>
+    public AsteroidInputActions @asteroidInput => new AsteroidInputActions(this);
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "shipInput" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="ShipInputActions.AddCallbacks(IShipInputActions)" />
+    /// <seealso cref="ShipInputActions.RemoveCallbacks(IShipInputActions)" />
+    public interface IShipInputActions
     {
         /// <summary>
         /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
@@ -391,5 +519,20 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShoot(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "asteroidInput" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="AsteroidInputActions.AddCallbacks(IAsteroidInputActions)" />
+    /// <seealso cref="AsteroidInputActions.RemoveCallbacks(IAsteroidInputActions)" />
+    public interface IAsteroidInputActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "leftClick" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLeftClick(InputAction.CallbackContext context);
     }
 }
