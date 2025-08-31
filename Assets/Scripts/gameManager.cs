@@ -14,16 +14,16 @@ public class gameManager : MonoBehaviour, IPoints
     private void Awake()
     {
         GameObject[] managers = GameObject.FindGameObjectsWithTag("gm");
-        
-        if (managers.Length > 1)
-        {
-            Destroy(managers[1]);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-
+                  
+          if (managers.Length > 1)
+          {
+              Destroy(managers[1]);
+          }
+          else
+          {
+              DontDestroyOnLoad(gameObject);
+          }
+          
         SceneManager.sceneLoaded += onSceneLoaded; 
     }
     
@@ -35,7 +35,9 @@ public class gameManager : MonoBehaviour, IPoints
     }
 
     private void onSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
+    {  
+        
+         
         var activeScene = SceneManager.GetActiveScene();
         scenes.Add(activeScene.name);
     }

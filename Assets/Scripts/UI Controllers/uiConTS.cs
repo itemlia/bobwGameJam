@@ -29,6 +29,7 @@ public class uiConTS : MonoBehaviour
         bQuit.clicked += quitClicked;
         bShip.clicked += shipClicked;
         bAsteroid.clicked += asteroidClicked;
+        bInst.clicked += instClicked;
     }
 
     private void quitClicked()
@@ -44,5 +45,10 @@ public class uiConTS : MonoBehaviour
     private void asteroidClicked()
     {
         SceneManager.LoadScene("Scenes/asteroidLevelOne");
+    }
+
+    private void instClicked()
+    {
+        SceneManager.LoadScene("Scenes/instructions");
     }
 }

@@ -97,3 +97,17 @@ VisualElement > #healthBar > #unity-progress-bar > .unity-progress-bar__backgrou
     border-bottom-color: rgb(0, 0, 0);
     background-color: rgb(4, 0, 226);
 }
+
+.normal-text-inst {
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    -unity-text-outline-color: rgba(255, 255, 255, 0);
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    justify-content: center;
+    align-self: center;
+    align-content: center;
+    -unity-font-style: bold;
+    top: 8%;
+}

@@ -1236,6 +1236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
+  uiCon: {fileID: 0}
   asteroidPrefab: {fileID: 8330121031598427111, guid: 989bac80e1c3139408466b667f86a13e, type: 3}
   tTopWall: {fileID: 1217670492}
   countdownTimer: 0
