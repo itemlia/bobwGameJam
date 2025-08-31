@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class camTest : MonoBehaviour
+public class camController : MonoBehaviour
 {
     private Camera camera;
     
@@ -9,11 +9,6 @@ public class camTest : MonoBehaviour
     [SerializeField] private BoxCollider2D topCollider;
     [SerializeField] private BoxCollider2D rightCollider;
     [SerializeField] private BoxCollider2D bottomCollider;
-
-    private void Awake()
-    {
-      
-    }
 
     private void Start()
     {
