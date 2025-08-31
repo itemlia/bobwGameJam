@@ -1062,7 +1062,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1080,13 +1080,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309cd1245087c044787695434c80f5bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 1503579017}
+  healthComp: {fileID: 1503579018}
   movePoints:
   - {fileID: 1120752200}
   - {fileID: 1618440169}
   - {fileID: 1849549786}
   - {fileID: 1739696081}
   speed: 8
-  rb: {fileID: 1503579017}
 --- !u!1 &1618440169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,7 +1213,8 @@ MonoBehaviour:
   mainCamera: {fileID: 519420031}
   asteroidPrefab: {fileID: 8330121031598427111, guid: 989bac80e1c3139408466b667f86a13e, type: 3}
   tTopWall: {fileID: 1217670492}
-  cooldownTime: 4
+  countdownTimer: 0
+  cooldownTime: 1
 --- !u!4 &1917081726
 Transform:
   m_ObjectHideFlags: 0

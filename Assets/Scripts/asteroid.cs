@@ -18,6 +18,7 @@ public class asteroid : MonoBehaviour
             Destroy(gameObject);
             gameManager.applyPoints(10);
         }    
+        //Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D other)

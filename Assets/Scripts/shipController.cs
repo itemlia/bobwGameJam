@@ -4,13 +4,29 @@ using Random = System.Random;
 
 public class shipController : MonoBehaviour
 {
+   [Header("components")]
+   [SerializeField] private Rigidbody2D rb;
+   [SerializeField] private healthComponent healthComp;
+   
+   [Header("movement")]
    [SerializeField] private GameObject[] movePoints;
    [SerializeField] private float speed = 10.0f;
 
-   [SerializeField] private Rigidbody2D rb;
 
    private int index;
 
+
+   private void OnEnable()
+   {
+      healthComp.onDamaged += Handle_HealthDamaged;
+      healthComp.onDead += Handle_OnDead;
+   }
+
+   private void OnDisable()
+   {
+      healthComp.onDamaged -= Handle_HealthDamaged;
+      healthComp.onDead -= Handle_OnDead;
+   }
 
    private void Awake()
    {
@@ -20,6 +36,7 @@ public class shipController : MonoBehaviour
    private void Start()
    {
       rb =  GetComponent<Rigidbody2D>();
+      healthComp = GetComponent<healthComponent>();
    }
 
    private void Update()
@@ -56,6 +73,29 @@ public class shipController : MonoBehaviour
          }
 
          break;
+      }
+   }
+
+   private void Handle_HealthDamaged(float currentHealth, float maxHealth, float changedHeath)
+   {
+      float healthVal = ((currentHealth / maxHealth) * 100);
+      uiController.changeBarVal(healthVal);
+   }
+   
+   private void Handle_OnDead(MonoBehaviour causer)
+   {
+      Destroy(gameObject);
+   }
+   
+   private void OnTriggerEnter2D(Collider2D other)
+   {
+      Debug.Log("hit");
+      
+      if (other.gameObject.CompareTag("Asteroid"))
+      {
+         healthComp.applyDamage(10, other.gameObject.GetComponent<MonoBehaviour>());
+         
+         Destroy(other.gameObject);
       }
    }
 }

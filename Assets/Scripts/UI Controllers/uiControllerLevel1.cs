@@ -7,7 +7,7 @@ public class uiController : MonoBehaviour
     private UIDocument uiDoc;
     private VisualElement rootElement;
     
-    private ProgressBar healthBar;
+    private static ProgressBar healthBar;
     private Label pointScore;
 
     private void Awake()
@@ -18,7 +18,7 @@ public class uiController : MonoBehaviour
         pointScore = rootElement.Q<Label>("pointCount");
     }
 
-    public void changeBarVal(float value)
+    public static void changeBarVal(float value)
     {
         healthBar.value = value;
         healthBar.title = value.ToString();
