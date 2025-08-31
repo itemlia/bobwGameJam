@@ -80,7 +80,7 @@ public class shipController : MonoBehaviour
    private void Handle_HealthDamaged(float currentHealth, float maxHealth, float changedHeath)
    {
       float healthVal = ((currentHealth / maxHealth) * 100);
-      uiController.changeBarVal(healthVal);
+      uiCon.changeBarVal(healthVal);
    }
    
    private void Handle_OnDead(MonoBehaviour causer)

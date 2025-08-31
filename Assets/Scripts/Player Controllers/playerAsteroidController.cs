@@ -8,6 +8,7 @@ public class playerAsteroidController : MonoBehaviour
     [Header("components")] 
     [SerializeField] private PlayerControls controls;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private uiCon uiCon;
 
     private Vector3 mousePos;
     
@@ -22,6 +23,7 @@ public class playerAsteroidController : MonoBehaviour
     private void Awake()
     {
         controls =  new PlayerControls();
+        uiCon = GameObject.Find("ui").GetComponent<uiCon>();
     }
 
     private void OnEnable()

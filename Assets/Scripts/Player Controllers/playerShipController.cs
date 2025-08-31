@@ -13,7 +13,7 @@ public class playerShipController : MonoBehaviour
     [SerializeField] private designPatternsObjectPooler objectPooler;
     [SerializeField] private healthComponent healthComp;
     [SerializeField] private gameManager gameManager;
-    [SerializeField] private uiController uiController;
+    [SerializeField] private uiCon uiController;
 
     private Vector3 inputMove;
     private Rigidbody2D rb;
@@ -29,7 +29,7 @@ public class playerShipController : MonoBehaviour
         objectPooler = GameObject.Find("objectPooler").GetComponent<designPatternsObjectPooler>();
         healthComp = GetComponent<healthComponent>();
         gameManager = GameObject.Find("gameManager").GetComponent<gameManager>();
-        uiController = GameObject.Find("ui").GetComponent<uiController>();
+        uiController = GameObject.Find("ui").GetComponent<uiCon>();
         
     }
 
@@ -92,7 +92,7 @@ public class playerShipController : MonoBehaviour
     private void Handle_HealthDamaged(float currentHealth, float maxHealth, float changedHeath)
     {
         float healthVal = ((currentHealth / maxHealth) * 100);
-        uiController.changeBarVal(healthVal);
+        uiCon.changeBarVal(healthVal);
     }
     
     

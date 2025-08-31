@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UIDocument))]
-public class uiController : MonoBehaviour
+public class uiCon : MonoBehaviour
 {
     private UIDocument uiDoc;
     private VisualElement rootElement;
