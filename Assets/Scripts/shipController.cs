@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = System.Random;
 
 public class shipController : MonoBehaviour
@@ -85,6 +86,7 @@ public class shipController : MonoBehaviour
    private void Handle_OnDead(MonoBehaviour causer)
    {
       Destroy(gameObject);
+      SceneManager.LoadScene("Scenes/winScreen");
    }
    
    private void OnTriggerEnter2D(Collider2D other)
@@ -96,6 +98,10 @@ public class shipController : MonoBehaviour
          healthComp.applyDamage(10, other.gameObject.GetComponent<MonoBehaviour>());
          
          Destroy(other.gameObject);
+      }
+      else if (other.gameObject.CompareTag("End"))
+      {
+         SceneManager.LoadScene("Scenes/loseScreen");
       }
    }
 }

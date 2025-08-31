@@ -13,6 +13,8 @@ public class uiConLoseScreen : MonoBehaviour
     private Button bQuit;
     private Button bHome;
     
+    private gameManager gameManager;
+    
 
     private void Awake()
     {
@@ -21,6 +23,8 @@ public class uiConLoseScreen : MonoBehaviour
         bRetry = rootElement.Q<Button>("b_retry");
         bQuit = rootElement.Q<Button>("b_quit");
         bHome = rootElement.Q<Button>("b_home");
+        
+        gameManager = GameObject.FindWithTag("gm").GetComponent<gameManager>();
     }
 
     private void OnEnable()
@@ -32,7 +36,13 @@ public class uiConLoseScreen : MonoBehaviour
 
     private void retryClicked()
     {
-        SceneManager.LoadScene("Scenes/levelOne");
+        for (int i = 0; i < gameManager.scenes.Count; i++)
+        {
+            if (i  == gameManager.scenes.Count - 2)
+            {
+                SceneManager.LoadScene(gameManager.scenes[i]);
+            }
+        }
     }
 
     private void quitClicked()

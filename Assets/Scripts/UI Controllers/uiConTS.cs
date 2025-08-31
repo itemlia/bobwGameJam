@@ -10,21 +10,25 @@ public class uiConTS : MonoBehaviour
     private UIDocument uiDoc;
 
     private Button bQuit;
-    private Button bLOne;
-    
+    private Button bShip;
+    private Button bAsteroid;
+    private Button bInst;
 
     private void Awake()
     {
         uiDoc = GetComponent<UIDocument>();
         rootElement = uiDoc.rootVisualElement;
         bQuit = rootElement.Q<Button>("b_quit");
-        bLOne = rootElement.Q<Button>("b_level1");
+        bShip = rootElement.Q<Button>("b_ship");
+        bAsteroid = rootElement.Q<Button>("b_asteroid");
+        bInst = rootElement.Q<Button>("b_instructions");
     }
 
     private void OnEnable()
     {
         bQuit.clicked += quitClicked;
-        bLOne.clicked += LOneClicked;
+        bShip.clicked += shipClicked;
+        bAsteroid.clicked += asteroidClicked;
     }
 
     private void quitClicked()
@@ -32,8 +36,13 @@ public class uiConTS : MonoBehaviour
         Application.Quit();
     }
 
-    private void LOneClicked()
+    private void shipClicked()
     {
         SceneManager.LoadScene("Scenes/levelOne");
+    }
+
+    private void asteroidClicked()
+    {
+        SceneManager.LoadScene("Scenes/asteroidLevelOne");
     }
 }
