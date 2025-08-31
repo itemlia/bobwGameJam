@@ -1086,7 +1086,7 @@ MonoBehaviour:
   - {fileID: 1849549786}
   - {fileID: 1739696081}
   speed: 8
-  rb: {fileID: 0}
+  rb: {fileID: 1503579017}
 --- !u!1 &1618440169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,6 +1212,7 @@ MonoBehaviour:
   mainCamera: {fileID: 519420031}
   asteroidPrefab: {fileID: 8330121031598427111, guid: 989bac80e1c3139408466b667f86a13e, type: 3}
   tTopWall: {fileID: 1217670492}
+  cooldownTime: 4
 --- !u!4 &1917081726
 Transform:
   m_ObjectHideFlags: 0

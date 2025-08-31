@@ -17,7 +17,7 @@ public class objectController : MonoBehaviour
 
 
 
-    public IEnumerator dropTimer()
+    private IEnumerator dropTimer()
     {
         while (tPlayer.position.y <= tTopWall.position.y)
         {
