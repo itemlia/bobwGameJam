@@ -82,7 +82,7 @@ public class playerShipController : MonoBehaviour
         if (bulletToSpawn == null) { return; }
 		
         bulletToSpawn.SetActive(true);
-        bulletToSpawn.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        bulletToSpawn.transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, 0);
         bulletToSpawn.GetComponent<bullet>().init();
     }
     private void Handle_ShootCancelled(InputAction.CallbackContext obj)
