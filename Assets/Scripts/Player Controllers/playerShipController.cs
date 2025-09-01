@@ -116,6 +116,7 @@ public class playerShipController : MonoBehaviour
         if (other.gameObject.CompareTag("Asteroid"))
         {
             healthComp.applyDamage(10, other.gameObject.GetComponent<MonoBehaviour>());
+            gameManager.applyPoints(10);
             Destroy(other.gameObject);
         }
     }

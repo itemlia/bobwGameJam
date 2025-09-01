@@ -151,7 +151,7 @@ MonoBehaviour:
   end: {fileID: 1217670493}
   tPlayer: {fileID: 1503579014}
   timer: 1
-  offset: 200
+  offset: 100
   asteroid: {fileID: 8330121031598427111, guid: 989bac80e1c3139408466b667f86a13e, type: 3}
   positionReached: 0
 --- !u!4 &22137894
@@ -163,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 22137892}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: 0.96693, z: 0}
+  m_LocalPosition: {x: -120.5, y: 0.96693, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1051,7 +1051,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

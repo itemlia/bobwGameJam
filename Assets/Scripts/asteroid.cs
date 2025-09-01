@@ -10,19 +10,15 @@ public class asteroid : MonoBehaviour
         gameManager = GameObject.Find("gameManager").GetComponent<gameManager>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Bullet")
-        {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-            gameManager.applyPoints(10);
-        }    
-        //Destroy(gameObject);
-    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            gameManager.applyPoints(10);
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        } 
         Destroy(gameObject);
     }
 }

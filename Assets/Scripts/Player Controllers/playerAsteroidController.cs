@@ -9,6 +9,7 @@ public class playerAsteroidController : MonoBehaviour
     [SerializeField] private PlayerControls controls;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private uiCon uiCon;
+    [SerializeField] private gameManager gameManager;
 
     private Vector3 mousePos;
     
@@ -24,6 +25,7 @@ public class playerAsteroidController : MonoBehaviour
     {
         controls =  new PlayerControls();
         uiCon = GameObject.Find("ui").GetComponent<uiCon>();
+        gameManager =  GameObject.Find("gameManager").GetComponent<gameManager>();
     }
 
     private void OnEnable()
@@ -32,7 +34,12 @@ public class playerAsteroidController : MonoBehaviour
 
         controls.asteroidInput.spawn.performed += Handle_Spawn;
         controls.asteroidInput.spawn.canceled += Handle_SpawnCancelled;
+        
+        gameManager.onPointsGained += Handle_OnPointsGained;
+        
     }
+
+    
 
 
     private void OnDisable()
@@ -41,7 +48,15 @@ public class playerAsteroidController : MonoBehaviour
 
         controls.asteroidInput.spawn.performed -= Handle_Spawn;
         controls.asteroidInput.spawn.canceled -= Handle_SpawnCancelled;
+        
+        gameManager.onPointsGained -= Handle_OnPointsGained;
+
     } 
+    
+    private void Handle_OnPointsGained(float pointsGained)
+    {
+        uiCon.setPoints(pointsGained);
+    }
     
     private void Handle_Spawn(InputAction.CallbackContext obj)
     {
