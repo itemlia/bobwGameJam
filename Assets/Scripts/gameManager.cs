@@ -36,8 +36,6 @@ public class gameManager : MonoBehaviour, IPoints
 
     private void onSceneLoaded(Scene scene, LoadSceneMode mode)
     {  
-        
-         
         var activeScene = SceneManager.GetActiveScene();
         scenes.Add(activeScene.name);
     }
