@@ -4,7 +4,7 @@
         <ui:Label text="instructions" name="controls" class="normal-text-inst" style="-unity-text-align: upper-center; align-self: center; white-space: pre; font-size: 20px; -unity-font-style: bold;" />
         <ui:Label text="in this game you can either play as the ship shooting down asteroids, or as the asteroids themselves trying to knock down the space ship. if you can shoot reach the end without being destroyed by asteroid you win, or if you knock down the space ship before it reaches the end you win!" name="description" class="normal-text-inst" style="flex-wrap: wrap; height: auto; align-self: flex-start; justify-content: flex-start; align-items: flex-start; flex-direction: column; white-space: pre-wrap; -unity-text-align: upper-center; -unity-font-style: normal; font-size: 15px;" />
         <ui:Label text="controls" name="title" class="normal-text-inst" style="-unity-text-align: upper-center; align-self: center; font-size: 20px; -unity-font-style: bold;" />
-        <ui:Label text="WASD to move the ship&#10;left click to spawn an asteroid" name="controls" class="normal-text-inst" style="-unity-text-align: upper-center; align-self: center; white-space: pre; font-size: 15px; -unity-font-style: normal;" />
+        <ui:Label text="WASD to move the ship&#10;left click to spawn an asteroid&#10;ESC to go back to the main menu" name="controls" class="normal-text-inst" style="-unity-text-align: upper-center; align-self: center; white-space: pre; font-size: 15px; -unity-font-style: normal;" />
         <ui:Button text="home" name="home" class="button" />
     </ui:VisualElement>
 </ui:UXML>
