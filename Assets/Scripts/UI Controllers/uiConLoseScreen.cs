@@ -35,6 +35,11 @@ public class uiConLoseScreen : MonoBehaviour
         bHome.clicked += homeClicked;
     }
 
+    private void Start()
+    {
+        gameManager.pointValue = 0;
+    }
+
     private void retryClicked()
     {
         audioSource.Play();
