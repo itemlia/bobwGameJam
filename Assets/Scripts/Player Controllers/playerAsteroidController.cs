@@ -39,8 +39,6 @@ public class playerAsteroidController : MonoBehaviour
         
     }
 
-    
-
 
     private void OnDisable()
     {

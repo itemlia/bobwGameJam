@@ -87,13 +87,12 @@ public class shipController : MonoBehaviour
    {
       float healthVal = ((currentHealth / maxHealth) * 100);
       uiCon.changeBarVal(healthVal);
+      gameManager.applyPoints(10);
    }
    
    private void Handle_OnDead(MonoBehaviour causer)
    {
       StartCoroutine(playClip());
-      
-      
    }
    
    private IEnumerator playClip()

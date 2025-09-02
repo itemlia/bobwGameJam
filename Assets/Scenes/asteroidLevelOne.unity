@@ -910,7 +910,7 @@ GameObject:
   - component: {fileID: 1503579023}
   m_Layer: 0
   m_Name: spaceShip
-  m_TagString: Untagged
+  m_TagString: Spaceship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1039,6 +1039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1503579017}
+  gameManager: {fileID: 0}
   healthComp: {fileID: 1503579018}
   audioAsteroid: {fileID: 1503579022}
   audioShip: {fileID: 1503579023}

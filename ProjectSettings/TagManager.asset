@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - End
   - gm
+  - Spaceship
   layers:
   - Default
   - TransparentFX
