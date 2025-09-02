@@ -89,7 +89,7 @@ public class playerShipController : MonoBehaviour
         bulletToSpawn.transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, 0);
         bulletToSpawn.GetComponent<bullet>().init();
         
-        AudioSource.PlayClipAtPoint(audioLaser.clip, transform.position, 0.3f);
+        AudioSource.PlayClipAtPoint(audioLaser.clip, transform.position, 0.6f);
     }
     private void Handle_ShootCancelled(InputAction.CallbackContext obj)
     {
@@ -121,7 +121,7 @@ public class playerShipController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Asteroid"))
         {
-            AudioSource.PlayClipAtPoint(audioAsteroid.clip, transform.position, 0.4f);            
+            AudioSource.PlayClipAtPoint(audioAsteroid.clip, transform.position, 0.8f);            
 
             healthComp.applyDamage(10, other.gameObject.GetComponent<MonoBehaviour>());
             gameManager.applyPoints(10);
@@ -139,7 +139,7 @@ public class playerShipController : MonoBehaviour
 
     private IEnumerator playClip()
     {
-        AudioSource.PlayClipAtPoint(audioShip.clip, transform.position, 0.8f);
+        AudioSource.PlayClipAtPoint(audioShip.clip, transform.position, 1f);
         
        gameObject.GetComponent<SpriteRenderer>().enabled = false;
         

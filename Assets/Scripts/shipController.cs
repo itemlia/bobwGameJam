@@ -97,7 +97,7 @@ public class shipController : MonoBehaviour
    
    private IEnumerator playClip()
    {
-      AudioSource.PlayClipAtPoint(audioShip.clip, transform.position, 0.8f);
+      AudioSource.PlayClipAtPoint(audioShip.clip, transform.position, 1f);
 
       gameObject.GetComponent<SpriteRenderer>().enabled = false;
       
