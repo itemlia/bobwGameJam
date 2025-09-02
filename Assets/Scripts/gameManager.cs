@@ -15,6 +15,7 @@ public class gameManager : MonoBehaviour, IPoints
     [SerializeField] private float pointValue;
     [SerializeField] public List<string> scenes;
     
+
     private void Awake()
     {
         controls = new PlayerControls();

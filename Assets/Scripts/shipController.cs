@@ -8,6 +8,7 @@ public class shipController : MonoBehaviour
 {
    [Header("components")]
    [SerializeField] private Rigidbody2D rb;
+   [SerializeField] private gameManager gameManager;
    [SerializeField] private healthComponent healthComp;
    [SerializeField] private AudioSource audioAsteroid;
    [SerializeField] private AudioSource audioShip;
@@ -42,6 +43,7 @@ public class shipController : MonoBehaviour
    {
       rb =  GetComponent<Rigidbody2D>();
       healthComp = GetComponent<healthComponent>();
+      gameManager = GameObject.FindWithTag("gm").GetComponent<gameManager>();
    }
 
    private void Update()
@@ -98,12 +100,12 @@ public class shipController : MonoBehaviour
    {
       AudioSource.PlayClipAtPoint(audioShip.clip, transform.position, 0.8f);
 
-      Destroy(gameObject);
+      gameObject.GetComponent<SpriteRenderer>().enabled = false;
       
       Instantiate(particles, transform.position, Quaternion.identity);
         
-      yield return new WaitForSeconds(10f);
-      
+      yield return new WaitForSeconds(5f);
+
       SceneManager.LoadScene("Scenes/winScreen");
    }
    

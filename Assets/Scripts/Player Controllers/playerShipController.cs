@@ -141,11 +141,11 @@ public class playerShipController : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(audioShip.clip, transform.position, 0.8f);
         
-        Destroy(gameObject);
+       gameObject.GetComponent<SpriteRenderer>().enabled = false;
         
         Instantiate(particles, transform.position, Quaternion.identity);
         
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(2f);
         
         SceneManager.LoadScene("Scenes/loseScreen");
 
