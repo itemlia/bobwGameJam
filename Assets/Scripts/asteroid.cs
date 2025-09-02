@@ -15,11 +15,12 @@ public class asteroid : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        audioSource.Play();
+        
         
         if (other.gameObject.CompareTag("Bullet"))
         {
             gameManager.applyPoints(10);
+            AudioSource.PlayClipAtPoint(audioSource.clip, transform.position, 1);            
             Destroy(other.gameObject);
             Destroy(gameObject);
         } 

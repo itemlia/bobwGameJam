@@ -34,7 +34,7 @@ public class uiConInstr : MonoBehaviour
 
     private void homeClicked()
     {
-        SceneManager.LoadScene("Scenes/titleScreen");
         audioSource.Play();
+        SceneManager.LoadScene("Scenes/titleScreen");
     }
 }

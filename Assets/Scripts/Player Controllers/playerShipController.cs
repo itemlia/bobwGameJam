@@ -87,7 +87,7 @@ public class playerShipController : MonoBehaviour
         bulletToSpawn.transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, 0);
         bulletToSpawn.GetComponent<bullet>().init();
         
-        audioSource.Play();
+        AudioSource.PlayClipAtPoint(audioSource.clip, transform.position, 0.3f);
     }
     private void Handle_ShootCancelled(InputAction.CallbackContext obj)
     {

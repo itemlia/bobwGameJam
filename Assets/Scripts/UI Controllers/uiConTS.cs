@@ -36,6 +36,7 @@ public class uiConTS : MonoBehaviour
 
     private void quitClicked()
     {
+        audioSource.Play();
         Application.Quit();
     }
 
