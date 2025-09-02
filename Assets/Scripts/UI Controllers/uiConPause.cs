@@ -10,10 +10,7 @@ public class uiConPause : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     private PlayerControls controls;
-
-    private Button bHome;
-    private Button bQuit;
-    private Button bResume;
+    
     
 
 

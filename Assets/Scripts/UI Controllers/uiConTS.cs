@@ -8,6 +8,7 @@ public class uiConTS : MonoBehaviour
 {
     private VisualElement rootElement;
     private UIDocument uiDoc;
+    private AudioSource audioSource;
 
     private Button bQuit;
     private Button bShip;
@@ -17,6 +18,7 @@ public class uiConTS : MonoBehaviour
     private void Awake()
     {
         uiDoc = GetComponent<UIDocument>();
+        audioSource = GetComponent<AudioSource>();
         rootElement = uiDoc.rootVisualElement;
         bQuit = rootElement.Q<Button>("b_quit");
         bShip = rootElement.Q<Button>("b_ship");
@@ -39,16 +41,19 @@ public class uiConTS : MonoBehaviour
 
     private void shipClicked()
     {
+        audioSource.Play();
         SceneManager.LoadScene("Scenes/levelOne");
     }
 
     private void asteroidClicked()
     {
+        audioSource.Play();
         SceneManager.LoadScene("Scenes/asteroidLevelOne");
     }
 
     private void instClicked()
     {
+        audioSource.Play();
         SceneManager.LoadScene("Scenes/instructions");
     }
 }

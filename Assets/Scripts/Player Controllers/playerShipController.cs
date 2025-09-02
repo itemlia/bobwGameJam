@@ -14,6 +14,7 @@ public class playerShipController : MonoBehaviour
     [SerializeField] private healthComponent healthComp;
     [SerializeField] private gameManager gameManager;
     [SerializeField] private uiCon uiController;
+    [SerializeField] private AudioSource audioSource;
 
     private Vector3 inputMove;
     private Rigidbody2D rb;
@@ -30,6 +31,7 @@ public class playerShipController : MonoBehaviour
         healthComp = GetComponent<healthComponent>();
         gameManager = GameObject.Find("gameManager").GetComponent<gameManager>();
         uiController = GameObject.Find("ui").GetComponent<uiCon>();
+        audioSource = GetComponent<AudioSource>();
         
     }
 
@@ -84,6 +86,8 @@ public class playerShipController : MonoBehaviour
         bulletToSpawn.SetActive(true);
         bulletToSpawn.transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, 0);
         bulletToSpawn.GetComponent<bullet>().init();
+        
+        audioSource.Play();
     }
     private void Handle_ShootCancelled(InputAction.CallbackContext obj)
     {

@@ -14,7 +14,7 @@ public class uiConLoseScreen : MonoBehaviour
     private Button bHome;
     
     private gameManager gameManager;
-    
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -25,6 +25,7 @@ public class uiConLoseScreen : MonoBehaviour
         bHome = rootElement.Q<Button>("b_home");
         
         gameManager = GameObject.FindWithTag("gm").GetComponent<gameManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -36,6 +37,7 @@ public class uiConLoseScreen : MonoBehaviour
 
     private void retryClicked()
     {
+        audioSource.Play();
         for (int i = 0; i < gameManager.scenes.Count; i++)
         {
             if (i  == gameManager.scenes.Count - 2)
@@ -47,11 +49,13 @@ public class uiConLoseScreen : MonoBehaviour
 
     private void quitClicked()
     {
+        audioSource.Play();
         Application.Quit();
     }
 
     private void homeClicked()
     {
+        audioSource.Play();
         SceneManager.LoadScene("Scenes/titleScreen");
     }
 }

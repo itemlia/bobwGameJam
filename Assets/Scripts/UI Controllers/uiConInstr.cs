@@ -13,6 +13,8 @@ public class uiConInstr : MonoBehaviour
     
     private gameManager gameManager;
     
+    private AudioSource audioSource;
+    
 
     private void Awake()
     {
@@ -21,6 +23,7 @@ public class uiConInstr : MonoBehaviour
         bHome = rootElement.Q<Button>("home");
         
         gameManager = GameObject.FindWithTag("gm").GetComponent<gameManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -32,5 +35,6 @@ public class uiConInstr : MonoBehaviour
     private void homeClicked()
     {
         SceneManager.LoadScene("Scenes/titleScreen");
+        audioSource.Play();
     }
 }
