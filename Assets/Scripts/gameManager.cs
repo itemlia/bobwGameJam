@@ -12,7 +12,7 @@ public class gameManager : MonoBehaviour, IPoints
     private PlayerControls controls;
 
 
-    [SerializeField] private float pointValue;
+    [SerializeField] public float pointValue;
     [SerializeField] public List<string> scenes;
     
 
@@ -56,7 +56,8 @@ public class gameManager : MonoBehaviour, IPoints
     private void Handle_Pause(InputAction.CallbackContext obj)
     {
         SceneManager.LoadScene("Scenes/titleScreen");
-        
+        pointValue = 0;
+
     }
     private void Handle_UnPause(InputAction.CallbackContext obj)
     {
