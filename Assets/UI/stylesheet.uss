@@ -63,13 +63,13 @@ VisualElement > #healthBar > #unity-progress-bar > .unity-progress-bar__backgrou
     right: 0%;
     left: 0%;
     bottom: 0%;
-    top: 20%;
+    top: 25%;
     align-items: center;
     justify-content: space-between;
     align-self: center;
     align-content: center;
-    width: 40%;
-    height: 25px;
+    width: 38%;
+    height: 50px;
     -unity-font-style: bold;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -80,6 +80,7 @@ VisualElement > #healthBar > #unity-progress-bar > .unity-progress-bar__backgrou
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
+    margin-top: 2%;
 }
 
 .button:hover {

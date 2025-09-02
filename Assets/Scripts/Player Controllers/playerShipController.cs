@@ -124,7 +124,6 @@ public class playerShipController : MonoBehaviour
             AudioSource.PlayClipAtPoint(audioAsteroid.clip, transform.position, 0.8f);            
 
             healthComp.applyDamage(10, other.gameObject.GetComponent<MonoBehaviour>());
-            gameManager.applyPoints(10);
             Destroy(other.gameObject);
         }
     }
