@@ -21,7 +21,7 @@ public class spawner : MonoBehaviour
         while (tPlayer.position.y <= end.position.y)
         {
             yield return new WaitForSeconds(timer);
-            Instantiate(asteroid, new Vector3(randomSpawn(), end.position.y, 0f), Quaternion.identity);
+            Instantiate(asteroid, new Vector3(randomSpawn(), end.position.y - 0.5f, 0f), Quaternion.identity);
         }
     }
     
@@ -32,7 +32,7 @@ public class spawner : MonoBehaviour
 
     private float randomSpawn()
     {
-        spawnPos = Random.Range(end.position.x, end.position.x + offset);
+        spawnPos = Random.Range(end.position.x - offset, end.position.x + offset);
 
         return spawnPos;
     }

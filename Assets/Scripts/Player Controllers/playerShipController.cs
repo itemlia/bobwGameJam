@@ -14,7 +14,10 @@ public class playerShipController : MonoBehaviour
     [SerializeField] private healthComponent healthComp;
     [SerializeField] private gameManager gameManager;
     [SerializeField] private uiCon uiController;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource audioLaser;
+    [SerializeField] private AudioSource audioShip;
+    [SerializeField] private AudioSource audioAsteroid;
+    [SerializeField] private GameObject particles;
 
     private Vector3 inputMove;
     private Rigidbody2D rb;
@@ -31,7 +34,6 @@ public class playerShipController : MonoBehaviour
         healthComp = GetComponent<healthComponent>();
         gameManager = GameObject.Find("gameManager").GetComponent<gameManager>();
         uiController = GameObject.Find("ui").GetComponent<uiCon>();
-        audioSource = GetComponent<AudioSource>();
         
     }
 
@@ -87,7 +89,7 @@ public class playerShipController : MonoBehaviour
         bulletToSpawn.transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, 0);
         bulletToSpawn.GetComponent<bullet>().init();
         
-        AudioSource.PlayClipAtPoint(audioSource.clip, transform.position, 0.3f);
+        AudioSource.PlayClipAtPoint(audioLaser.clip, transform.position, 0.3f);
     }
     private void Handle_ShootCancelled(InputAction.CallbackContext obj)
     {
@@ -102,8 +104,8 @@ public class playerShipController : MonoBehaviour
     
     private void Handle_OnDead(MonoBehaviour causer)
     {
-        Destroy(gameObject);
-        SceneManager.LoadScene("Scenes/loseScreen");
+        StartCoroutine(playClip());
+        
     }
 
     private void Handle_PointsGained(float pointsGained)
@@ -119,6 +121,8 @@ public class playerShipController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Asteroid"))
         {
+            AudioSource.PlayClipAtPoint(audioAsteroid.clip, transform.position, 0.4f);            
+
             healthComp.applyDamage(10, other.gameObject.GetComponent<MonoBehaviour>());
             gameManager.applyPoints(10);
             Destroy(other.gameObject);
@@ -131,5 +135,19 @@ public class playerShipController : MonoBehaviour
         {
             SceneManager.LoadScene("Scenes/winScreen");
         }
+    }
+
+    private IEnumerator playClip()
+    {
+        AudioSource.PlayClipAtPoint(audioShip.clip, transform.position, 0.8f);
+        
+        Destroy(gameObject);
+        
+        Instantiate(particles, transform.position, Quaternion.identity);
+        
+        yield return new WaitForSeconds(10f);
+        
+        SceneManager.LoadScene("Scenes/loseScreen");
+
     }
 }

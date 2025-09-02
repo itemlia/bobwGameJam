@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   audioSource: {fileID: 0}
+  particles: {fileID: 686409056850713317, guid: 06927c9b7b281ee44ad6f3532ad0b4ca, type: 3}
 --- !u!61 &341495553860491506
 BoxCollider2D:
   m_ObjectHideFlags: 0

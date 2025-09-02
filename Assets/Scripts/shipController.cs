@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = System.Random;
@@ -8,6 +9,9 @@ public class shipController : MonoBehaviour
    [Header("components")]
    [SerializeField] private Rigidbody2D rb;
    [SerializeField] private healthComponent healthComp;
+   [SerializeField] private AudioSource audioAsteroid;
+   [SerializeField] private AudioSource audioShip;
+   [SerializeField] private GameObject particles;
    
    [Header("movement")]
    [SerializeField] private GameObject[] movePoints;
@@ -85,7 +89,21 @@ public class shipController : MonoBehaviour
    
    private void Handle_OnDead(MonoBehaviour causer)
    {
+      StartCoroutine(playClip());
+      
+      
+   }
+   
+   private IEnumerator playClip()
+   {
+      AudioSource.PlayClipAtPoint(audioShip.clip, transform.position, 0.8f);
+
       Destroy(gameObject);
+      
+      Instantiate(particles, transform.position, Quaternion.identity);
+        
+      yield return new WaitForSeconds(10f);
+      
       SceneManager.LoadScene("Scenes/winScreen");
    }
    
@@ -95,6 +113,8 @@ public class shipController : MonoBehaviour
       
       if (other.gameObject.CompareTag("Asteroid"))
       {
+         AudioSource.PlayClipAtPoint(audioAsteroid.clip, transform.position, 0.8f);
+         
          healthComp.applyDamage(10, other.gameObject.GetComponent<MonoBehaviour>());
          
          Destroy(other.gameObject);
