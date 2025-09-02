@@ -60,31 +60,29 @@ VisualElement > #healthBar > #unity-progress-bar > .unity-progress-bar__backgrou
 }
 
 .button {
-    right: 0%;
-    left: 0%;
-    bottom: 0%;
-    top: 25%;
     align-items: center;
     justify-content: space-between;
     align-self: center;
     align-content: center;
-    width: 38%;
-    height: 50px;
+    width: 15%;
+    height: 5%;
     -unity-font-style: bold;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
-    background-color: rgb(255, 244, 244);
     border-left-color: rgb(0, 0, 0);
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
-    margin-top: 2%;
+    color: rgb(0, 0, 0);
+    background-color: rgba(229, 229, 229, 0.63);
+    top: 20%;
+    transform-origin: center;
 }
 
 .button:hover {
-    background-color: rgb(169, 0, 217);
+    background-color: rgba(75, 2, 96, 0.63);
     border-left-color: rgb(0, 0, 0);
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
@@ -96,19 +94,36 @@ VisualElement > #healthBar > #unity-progress-bar > .unity-progress-bar__backgrou
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
-    background-color: rgb(4, 0, 226);
+    background-color: rgba(4, 0, 114, 0.63);
 }
 
 .normal-text-inst {
     flex-direction: column;
     align-items: center;
-    width: auto;
+    width: 15%;
     -unity-text-outline-color: rgba(255, 255, 255, 0);
     color: rgb(255, 255, 255);
     font-size: 25px;
-    justify-content: center;
+    justify-content: space-between;
     align-self: center;
     align-content: center;
     -unity-font-style: bold;
-    top: 8%;
+    flex-wrap: nowrap;
+    -unity-text-align: upper-center;
+    white-space: normal;
+    top: 15%;
+}
+
+VisualElement > #healthBar > #unity-progress-bar > .unity-progress-bar__background {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+VisualElement > #healthBar > #unity-progress-bar > .unity-progress-bar__background > .unity-progress-bar__progress {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
 }

@@ -1,10 +1,10 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/stylesheet.uss?fileID=7433441132597879392&amp;guid=0b11254b9b8d0c8449aa3ed42e786b12&amp;type=3#stylesheet" />
     <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/bg1.png?fileID=21300000&amp;guid=6b185588b179a1e4c94d8cd935b2eb1c&amp;type=3#bg1&quot;);">
-        <ui:Label text="asteroids in space" name="title" class="normal-text" style="font-size: 30px; -unity-text-align: upper-center;" />
-        <ui:Button text="play as ship" name="b_ship" class="button" />
-        <ui:Button text="play as asteroid" name="b_asteroid" class="button" />
-        <ui:Button text="instructions" name="b_instructions" class="button" />
-        <ui:Button text="quit" name="b_quit" class="button" />
+        <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/title.png?fileID=21300000&amp;guid=11a5212993d1b6b4c8bbca1bc020bce7&amp;type=3#title&quot;); -unity-background-scale-mode: scale-to-fit; align-items: center; justify-content: center; align-self: center; align-content: center; flex-direction: column; height: 25%; width: 693px;" />
+        <ui:Button text="play as ship" name="b_ship" class="button" style="top: -2%;" />
+        <ui:Button text="play as asteroid" name="b_asteroid" class="button" style="top: -2%;" />
+        <ui:Button text="instructions" name="b_instructions" class="button" style="top: -2%;" />
+        <ui:Button text="quit" name="b_quit" class="button" style="top: -2%;" />
     </ui:VisualElement>
 </ui:UXML>
